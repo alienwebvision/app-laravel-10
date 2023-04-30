@@ -1,10 +1,10 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\Supports;
 
 use App\Http\Requests\StoreUpdateSupportRequest;
 
-class UpdateSupportDTO
+class UpdateSupportDTO extends \App\DTO\CreateSupportDTO
 {
     public function __construct(
         public string $id,

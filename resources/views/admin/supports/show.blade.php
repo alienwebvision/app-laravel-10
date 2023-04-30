@@ -1,4 +1,4 @@
-<h1>Detalhes da Solicitação {{$support->id}}</h1>
+<h1>Detalhes da Solicitação Nº-{{$support->id}}</h1>
 
 <a href="{{route('supports.index')}}"> Listar Suportes</a>
 

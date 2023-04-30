@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
+use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupportRequest;
 use App\Models\Support;
@@ -22,8 +22,14 @@ class SupportController extends Controller
     public function index(Request $request)
     {
 
-        $supports = $this->service->getAll($request->filter);
-        dd($supports);
+        $supports = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 15),
+            filter: $request->filter,
+        );
+//        $supports = Support::paginate(3);
+
+//        dd($supports);
 //        Laravel protege ataque XSS
 //        $xss = '<script>alert("HACKEANDO");</script>';
 
@@ -50,12 +56,12 @@ class SupportController extends Controller
         return view('admin.supports.create');
     }
 
-    public function store(StoreUpdateSupportRequest $storeUpdateSupportRequest, Support $support)
+    public function store(StoreUpdateSupportRequest $request, Support $support)
     {
 //        todos os dados
 //        dd($request->all());
         $this->service->new(
-            CreateSupportDTO::makeFromRequest($storeUpdateSupportRequest)
+            CreateSupportDTO::makeFromRequest($request)
         );
 //        dd($support);
         return redirect()->route('supports.index');
@@ -70,10 +76,10 @@ class SupportController extends Controller
         return view('admin.supports.edit', compact('support'));
     }
 
-    public function update(StoreUpdateSupportRequest $storeUpdateSupportRequest, Support $support, string $id)
+    public function update(StoreUpdateSupportRequest $request, Support $support, string $id)
     {
         $support = $this->service->new(
-            UpdateSupportDTO::makeFromRequest($storeUpdateSupportRequest)
+            UpdateSupportDTO::makeFromRequest($request)
         );
 
         if (!$support) {
@@ -84,7 +90,7 @@ class SupportController extends Controller
 //        $support->body = $request->body;
 //        $support->save();
 
-//            $support->update($storeUpdateSupportRequest->only([
+//            $support->update($request->only([
 //            'subject',
 //            'body'
 //        ]));
