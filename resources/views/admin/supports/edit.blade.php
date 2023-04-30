@@ -1,4 +1,11 @@
-<h1>Solicitação {{$support->id}}</h1>
+<h1>Solicitação: {{ $support->id }}</h1>
+
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        {{ $error }}
+    @endforeach
+@endif
+
 <button class="btn"><a href="{{route('supports.index')}}"> Lista Suportes</a></button>
 
 <form action="{{route('supports.update', $support->id)}}" method="POST">
