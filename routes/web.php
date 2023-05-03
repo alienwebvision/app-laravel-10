@@ -1,11 +1,8 @@
 <?php
 
-use App\Enums\SupportStatus;
 use App\Http\Controllers\Admin\{SupportController};
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
-
-
 
 // Route::resource('/supports', SupportController::class);
 Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');

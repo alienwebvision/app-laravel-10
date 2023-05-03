@@ -16,10 +16,12 @@ git clone https://github.com/especializati/curso-de-laravel-10.git laravel-10
 cd laravel-10/
 ```
 
+
 Crie o Arquivo .env
 ```sh
 cp .env.example .env
 ```
+
 
 Atualize essas variáveis de ambiente no arquivo .env
 ```dosini
