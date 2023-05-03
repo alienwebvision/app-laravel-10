@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Repositories\SupportRepositoryInterface;
+use App\Repositories\{SupportEloquentORM};
+use App\Repositories\{SupportRepositoryInterface};
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\SupportEloquentORM;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             SupportRepositoryInterface::class,
-            SupportEloquentORM::class);
+            SupportEloquentORM::class
+        );
     }
 
     /**

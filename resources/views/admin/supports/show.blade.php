@@ -1,6 +1,4 @@
-<h1>Detalhes da Solicitação Nº-{{$support->id}}</h1>
-
-<a href="{{route('supports.index')}}"> Listar Suportes</a>
+<h1>Detalhes da dúvida {{ $support->id }}</h1>
 
 <ul>
     <li>Assunto: {{ $support->subject }}</li>
@@ -13,7 +11,3 @@
     @method('DELETE')
     <button type="submit">Deletar</button>
 </form>
-
-
-
-
