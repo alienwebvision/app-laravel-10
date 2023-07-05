@@ -4,15 +4,17 @@ namespace App\Services;
 
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
-use App\Repositories\PaginationInterface;
-use App\Repositories\SupportRepositoryInterface;
+use App\Enums\SupportStatus;
+use App\Repositories\Contracts\PaginationInterface;
+use App\Repositories\Contracts\SupportRepositoryInterface;
 use stdClass;
 
 class SupportService
 {
     public function __construct(
         protected SupportRepositoryInterface $repository,
-    ) {}
+    ) {
+    }
 
     public function paginate(
         int $page = 1,
@@ -49,5 +51,10 @@ class SupportService
     public function delete(string $id): void
     {
         $this->repository->delete($id);
+    }
+
+    public function updateStatus(string $id, SupportStatus $status): void
+    {
+        $this->repository->updateStatus($id, $status);
     }
 }
